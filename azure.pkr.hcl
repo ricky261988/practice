@@ -47,6 +47,17 @@ source "azure-arm" "windows" {
     image_offer = "WindowsServer"
     image_sku = "2019-Datacenter"
 
+    shared_image_gallery_destination {
+        subscription = var.subscription_id
+        resource_group = "PackerImage"
+        gallery_name = "PackerImageGallery"
+        image_name = var.image_name
+        image_version = var.image_version
+        replication_regions = [
+            "Central India"
+        ]
+    }
+
     communicator    = "winrm"
     winrm_use_ssl   = true
     winrm_insecure  = true
