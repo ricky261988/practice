@@ -25,7 +25,7 @@ jobs:
                 packer build .
 
               env:
-                PKR_VAR_client_id: ${{ secrets.PACKER_CLIENT_ID }}
-                PKR_VAR_client_secret: ${{ secrets.PACKER_CLIENT_SECRET }}
-                PKR_VAR_subscription_id: ${{ secrets.PACKER_SUBSCRIPTION_ID }}
-                PKR_VAR_tenant_id: ${{ secrets.PACKER_TENANT_ID }}
+                PKR_VAR_client_id: ${{ secrets.CLIENT_ID }}
+                PKR_VAR_client_secret: ${{ secrets.CLIENT_SECRET }}
+                PKR_VAR_subscription_id: ${{ secrets.SUBSCRIPTION_ID }}
+                PKR_VAR_tenant_id: ${{ secrets.TENANT_ID }}
