@@ -1,0 +1,31 @@
+name: Packer
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    PackerImage:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
+            - name: Setup Packer
+              uses: hashicorp/setup-packer@v3.1.0
+              with:
+                packer-version: '1.11.2'
+
+            - name: Initialize Packer Image
+              run: |
+                packer init .
+
+            - name: Building Packer Image
+              run: |
+                packer build .
+
+              env:
+                PKR_VAR_client_id: ${{ secrets.PACKER_CLIENT_ID }}
+                PKR_VAR_client_secret: ${{ secrets.PACKER_CLIENT_SECRET }}
+                PKR_VAR_subscription_id: ${{ secrets.PACKER_SUBSCRIPTION_ID }}
+                PKR_VAR_tenant_id: ${{ secrets.PACKER_TENANT_ID }}
