@@ -10,7 +10,7 @@ build {
     }
 
     provisioner "windows-restart" {
-      restart_check_command = "powershell -command \"& {Write-Output 'restarted.'}\""
+      restart_check_command = "powershell -command \"& {Write-Output 'Machine Restarted.'}\""
     }
 
     provisioner "powershell" {
