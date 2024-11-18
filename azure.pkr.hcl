@@ -19,4 +19,15 @@ source "azure-arm" "windows" {
     winrm_insecure  = true
     winrm_timeout   = "5m"
     winrm_username  = "packer"
+
+    shared_image_gallery_destination {
+        subscription = var.subscription_id
+        resource_group = "PackerImage"
+        gallery_name = "PackerImageGallery"
+        image_name = var.image_name
+        image_version = var.image_version
+        replication_regions = [
+            "Central India"
+        ]
+    }
 }
