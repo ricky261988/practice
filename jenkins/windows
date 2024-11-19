@@ -19,10 +19,9 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'azure_client_id', variable: 'client_id'), string(credentialsId: 'azure_client_secret', variable: 'client_secret'), string(credentialsId: 'azure_subscription_id', variable: 'subscription_id'), string(credentialsId: 'azure_tenant_id', variable: 'tenant_id')]){
-                        bat packer build .
-                    }
-                    
+                    withCredentials([string(credentialsId: 'azure_client_id', variable: 'client_id'), string(credentialsId: 'azure_client_secret', variable: 'client_secret'), string(credentialsId: 'azure_tenant_id', variable: 'tenant_id'), string(credentialsId: 'azure_subscription_id', variable: 'subscription_id')]){
+                        bat 'packer build .'
+                    } 
                     
                 }
             }
