@@ -1,11 +1,6 @@
 pipeline{
     agent any
-    environment{
-        AZURE_SUBSCRIPTION_ID = credentials('access')['subscriptionId']
-        AZURE_CLIENT_ID = credentials('access')['clientId']
-        AZURE_CLIENT_SECRET = credentials('access')['clientSecret']
-        AZURE_TENANT_ID = credentials('access')['tenantId']
-    }
+    
     stages{
         stage('verify packer'){
             steps{
@@ -24,7 +19,9 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    bat 'packer build -var azure_client_id=$AZURE_CLIENT_ID -var azure_client_secret=$AZURE_CLIENT_SECRET -var azure_subscription_id=$AZURE_SUBSCRIPTION_ID -var azure_tenant_id=$AZURE_TENANT_ID' 
+                    withCredentials([azureCredentials('access')]){
+                    bat 'packer build -var azure_client_id=$AZURE_CLIENT_ID -var azure_client_secret=$AZURE_CLIENT_SECRET -var azure_subscription_id=$AZURE_SUBSCRIPTION_ID -var azure_tenant_id=$AZURE_TENANT_ID .'
+                    } 
                 }
             }
         }
