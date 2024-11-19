@@ -1,14 +1,6 @@
 pipeline{
     agent any
     
-    environment{
-        AZURE_CRED = credentials('access')
-        AZURE_SUBSCRIPTION_ID = credentials('azure_subscription_id')
-        AZURE_TENANT_ID = credentials('azure_tenant_id')
-        AZURE_CLIENT_ID = credentials('azure_client_id')
-        AZURE_CLIENT_SECRET = credentials('azure_client_secret')
-    }
-    
     stages{
         stage('verify packer'){
             steps{
@@ -24,18 +16,13 @@ pipeline{
                 }
             }
         }
-        stage('Login to Azure'){
-            steps{
-                script{
-                    bat 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID'
-                }
-            }
-        }
         stage('Build Packer Image'){
             steps{
                 script{
+                    withCredentials([string(credentialsId: 'azure_client_id', variable: 'client_id'), string(credentialsId: 'azure_client_secret', variable: 'client_secret'), string(credentialsId: 'azure_subscription_id', variable: 'subscription_id'), string(credentialsId: 'azure_tenant_id', variable: 'tenant_id')]){
+                        bat packer build .
+                    }
                     
-                    bat 'packer build -var "azure_subscription_id=$AZURE_CRED_SUBSCRIPTION_ID" -var "azure_tenant_id=$AZURE_CRED_TENANT_ID" -var "azure_client_id=$AZURE_CRED_CLIENT_ID" -var "azure_client_secret=$AZURE_CRED_CLIENT_SECRET" .'
                     
                 }
             }
