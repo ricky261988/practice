@@ -16,10 +16,10 @@ variable "client_secret" {
 
 variable "image_name" {
     type = string
-    default = "packer-windows-image1"
+    default = "packer-windows-image"
 }
 
 variable image_version {
     type = string
-    default = "2.0.0"
+    default = "1.0.0"
 }
