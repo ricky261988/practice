@@ -1,0 +1,54 @@
+pipeline{
+    agent any
+    
+    environment{
+        AZURE_SUBSCRIPTION_ID = credentials('azure_subscription_id')
+        AZURE_TENANT_ID = credentials('azure_tenant_id')
+        AZURE_CLIENT_ID = credentials('azure_client_id')
+        AZURE_CLIENT_SECRET = credentials('azure_client_secret')
+    }
+    
+    stages{
+        stage('Git Checkout'){
+            steps{
+                script{
+                    git branch: 'master',
+                        url: 'https://github.com/ricky261988/practice.git'
+                }
+            }
+        }
+        stage('verify packer'){
+            steps{
+                script{
+                    bat 'packer -v'
+                }
+            }
+        }
+        stage('Intialize Packer'){
+            steps{
+                script{
+                    bat 'packer init .'
+                }
+            }
+        }
+        stage('Env set'){
+            steps{
+                script{
+                    echo "Using AZURE Client Id: ${env.AZURE_CLIENT_ID}"
+                    echo "Using AZURE Client Secret: ${env.AZURE_CLIENT_SECRET}"
+                    echo "Using AZURE Subscription Id: ${env.AZURE_SUBSCRIPTION_ID}"
+                    echo "Using AZURE Tenant Id: ${env.AZURE_TENANT_ID}"
+                }
+            }
+        }
+        stage('Build Packer Image'){
+            steps{
+                script{
+                    
+                    bat 'packer build -var "azure_subscription_id=$AZURE_SUBSCRIPTION_ID" -var "azure_tenant_id=$AZURE_TENANT_ID" -var "azure_client_id=$AZURE_CLIENT_ID" -var "azure_client_secret=$AZURE_CLIENT_SECRET" .'
+                    
+                }
+            }
+        }
+    }
+}   
