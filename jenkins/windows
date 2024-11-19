@@ -1,10 +1,10 @@
 pipeline{
     agent any
     environment{
-        AZURE_SUBSCRIPTION_ID = azureCredentials('access')['subscriptionId']
-        AZURE_CLIENT_ID = azureCredentials('access')['clientId']
-        AZURE_CLIENT_SECRET = azureCredentials('access')['clientSecret']
-        AZURE_TENANT_ID = azureCredentials('access')['tenantId']
+        AZURE_SUBSCRIPTION_ID = Credentials('access')['subscriptionId']
+        AZURE_CLIENT_ID = Credentials('access')['clientId']
+        AZURE_CLIENT_SECRET = Credentials('access')['clientSecret']
+        AZURE_TENANT_ID = Credentials('access')['tenantId']
     }
     stages{
         stage('verify packer'){
