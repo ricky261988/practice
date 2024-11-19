@@ -24,13 +24,10 @@ pipeline{
                 }
             }
         }
-        stage('Env set'){
+        stage('Login to Azure'){
             steps{
                 script{
-                    echo "Using AZURE Client Id: ${env.AZURE_CLIENT_ID}"
-                    echo "Using AZURE Client Secret: ${env.AZURE_CLIENT_SECRET}"
-                    echo "Using AZURE Subscription Id: ${env.AZURE_SUBSCRIPTION_ID}"
-                    echo "Using AZURE Tenant Id: ${env.AZURE_TENANT_ID}"
+                    bat 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID'
                 }
             }
         }
