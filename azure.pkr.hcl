@@ -2,7 +2,7 @@ source "azure-arm" "windows" {
     client_id = var.client_id
     client_secret = var.client_secret
     subscription_id = var.subscription_id
-    tenant_id = var.tenant_id
+    tenant_id = "bdf6fa44-c7b1-44e4-83af-4442716a5a1c"
     managed_image_name = "${var.image_name}-${var.image_version}"
     managed_image_resource_group_name = "PackerImage"
     vm_size = "Standard_D2_v2"
