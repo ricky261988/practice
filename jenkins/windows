@@ -21,7 +21,7 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    bat 'packer build -var client_id=$cred_CLIENT_ID -var client_secret=$cred_CLIENT_SECRET -var subscription_id=$cred_SUBSCRIPTION_ID -var tenant_id=$cred_TENANT_ID .'
+                    bat 'packer build -var azure_client_id=$cred_CLIENT_ID -var azure_client_secret=$cred_CLIENT_SECRET -var azure_subscription_id=$cred_SUBSCRIPTION_ID -var azure_tenant_id=$cred_TENANT_ID .'
                 }
             }
         }
