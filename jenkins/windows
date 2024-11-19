@@ -19,8 +19,8 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    withCredentials([azureCredentials('access')]){
-                    bat 'packer build -var azure_client_id=$AZURE_CLIENT_ID -var azure_client_secret=$AZURE_CLIENT_SECRET -var azure_subscription_id=$AZURE_SUBSCRIPTION_ID -var azure_tenant_id=$AZURE_TENANT_ID .'
+                    withCredentials([azureServicePrincipal(clientIdVariable: 'PKR_VAR_azure_client_id', clientSecretVariable: 'PKR_VAR_azure_client_secret', credentialsId: 'access', subscriptionIdVariable: 'PKR_VAR_azure_subscription_id', tenantIdVariable: 'PKR_VAR_azure_tenant_id')]){
+                    bat 'packer build -var azure_client_id=$PKR_VAR_azure_client_id -var azure_client_secret=$PKR_VAR_azure_client_secret -var azure_subscription_id=$PKR_VAR_azure_subscription_id -var azure_tenant_id=$PKR_VAR_azure_tenant_id .'
                     } 
                 }
             }
