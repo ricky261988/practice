@@ -1,16 +1,16 @@
-variable "subscription_id" {
+variable "AZURE_SUBSCRIPTION_ID" {
     type = string
 }
 
-variable "tenant_id" {
+variable "AZURE_TENANT_ID" {
     type = string
 }
 
-variable "client_id" {
+variable "AZURE_CLIENT_ID" {
     type = string
 }
 
-variable "client_secret" {
+variable "AZURE_CLIENT_SECRET" {
     type = string
 }
 
