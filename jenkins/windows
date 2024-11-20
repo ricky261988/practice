@@ -12,7 +12,7 @@ pipeline{
         stage('Intialize Packer'){
             steps{
                 script{
-                    bat 'packer init .'
+                    bat 'packer init plugins.pkr.hcl'
                 }
             }
         }
