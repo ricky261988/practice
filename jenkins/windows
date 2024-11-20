@@ -19,7 +19,7 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    bat 'packer build .'
+                    bat 'packer build main.pkr.hcl'
                 }
             }
         }
