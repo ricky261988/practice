@@ -19,7 +19,7 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    powershell 'cd "C:\temp\practice"'
+                    powershell "cd C:\temp\practice"
                     powershell 'packer.exe build -var client_id=${client_id} -var client_secret=${client.secret} -var subscription_id=${subscription_id} -var tenant_id=${tenant_id} .'
                 }
             }
