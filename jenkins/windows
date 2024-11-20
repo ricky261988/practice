@@ -20,10 +20,10 @@ pipeline{
             steps{
                 script{
                     bat """
-                        echo 'variable "client_id" { type = "string" default = "${client_id}"}' > dynamic-vars.pkr.hcl
-                        echo 'variable "client_secret" { type = "string" default = "${client_secret}"}' >> dynamic-vars.pkr.hcl
-                        echo 'variable "subscription_id" { type = "string" default = "${subscription_id}"}' >> dynamic-vars.pkr.hcl
-                        echo 'variable "tenant_id" { type = "string" default = "${tenant_id}"}' >> dynamic-vars.pkr.hcl
+                        echo variable "client_id" { type = "string" default = "${client_id}"} > dynamic-vars.pkr.hcl
+                        echo variable "client_secret" { type = "string" default = "${client_secret}"} >> dynamic-vars.pkr.hcl
+                        echo variable "subscription_id" { type = "string" default = "${subscription_id}"} >> dynamic-vars.pkr.hcl
+                        echo variable "tenant_id" { type = "string" default = "${tenant_id}"} >> dynamic-vars.pkr.hcl
                     """
                 }
             }
