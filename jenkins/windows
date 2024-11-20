@@ -1,6 +1,8 @@
 pipeline{
     agent any
-    
+    environment{
+        subscription_id = credentials('access')
+    }
     stages{
         stage('verify packer'){
             steps{
@@ -18,11 +20,7 @@ pipeline{
         }
         stage('Build Packer Image'){
             steps{
-                script{
-                    withCredentials([azureServicePrincipal(clientIdVariable: 'PKR_VAR_azure_client_id', clientSecretVariable: 'PKR_VAR_azure_client_secret', credentialsId: 'access', subscriptionIdVariable: 'PKR_VAR_azure_subscription_id', tenantIdVariable: 'PKR_VAR_azure_tenant_id')]){
-                    bat 'packer build -var azure_client_id=$PKR_VAR_azure_client_id -var azure_client_secret=$PKR_VAR_azure_client_secret -var azure_subscription_id=$PKR_VAR_azure_subscription_id -var azure_tenant_id=$PKR_VAR_azure_tenant_id .'
-                    } 
-                }
+                echo env.subscription_id
             }
         }
     }
