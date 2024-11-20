@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        client_id = credentials('azure_client_id')
+        client_id = credential('azure_client_id')
     }
     stages{
         stage('verify packer'){
@@ -20,7 +20,7 @@ pipeline{
         }
         stage('Build Packer Image'){
             steps{
-                echo env.subscription_id
+                echo env.client_id
             }
         }
     }
