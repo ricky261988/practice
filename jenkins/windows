@@ -19,7 +19,7 @@ pipeline{
         stage('Build Packer Image'){
             steps{
                 script{
-                    bat 'packer.exe build -var client_id=${{env.client_id}} -var client_secret=${{env.client.secret}} -var subscription_id=${{env.subscription_id}} -var tenant_id=${{env.tenant_id}} .'
+                    bat 'packer.exe build -var client_id=${{env.client_id}} -var client_secret=${{env.client_secret}} -var subscription_id=${{env.subscription_id}} -var tenant_id=${{env.tenant_id}} .'
                 }
             }
         }
