@@ -3,4 +3,5 @@ Secret ID- 295b7a39-5601-4d9a-9130-b19df23d287e
 Subscription ID- 05d81944-2379-4f99-aba1-2ac9e52529b5
 Tenet ID- bdf6fa44-c7b1-44e4-83af-4442716a5a1c
 App ID- aa946c00-caa1-4d1d-8aac-2f76542b786b
+GToken- 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
 
